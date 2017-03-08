@@ -6,6 +6,8 @@
 
 *** To download the event client, please visit [this] repo. ***
 
+#
+
 Parallel is an event management platform. Parallel lets you create a geofenced, temporary social network that:
 
  - Lets you interact with attendees
