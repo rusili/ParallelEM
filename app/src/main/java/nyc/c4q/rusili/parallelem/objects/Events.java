@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelem.network.objects;
+package nyc.c4q.rusili.parallelem.objects;
 
 import java.util.Date;
 

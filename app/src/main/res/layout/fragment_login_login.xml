@@ -52,6 +52,7 @@
     </android.support.design.widget.TextInputLayout>>
 
     <Button
+        android:id="@+id/fragment_login_login_button_login"
         android:layout_width="@dimen/activity_start_edittext_width"
         android:layout_height="@dimen/activity_start_edittext_height"
         android:text="Login"

@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelem.fragments.activitymanager;
+package nyc.c4q.rusili.parallelem.activityMonitor.chat;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,13 +9,28 @@ import android.view.ViewGroup;
 
 import nyc.c4q.rusili.parallelem.R;
 
-public class FragmentManagerPushNotifications extends Fragment {
+public class FragmentMonitorChat extends Fragment implements FragmentMonitorChatContract.View{
     private View mView;
 
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_manager_start, container, false);
+        mView = inflater.inflate(R.layout.fragment_setup_start, container, false);
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void setPresenter (FragmentMonitorChatContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void initialize () {
+
+    }
+
+    @Override
+    public void setViews () {
+
     }
 }

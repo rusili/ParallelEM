@@ -5,7 +5,7 @@
     >
 
     <LinearLayout
-        android:id="@+id/activity_manager_fragment_container"
+        android:id="@+id/activity_monitor_fragment_container"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

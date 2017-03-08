@@ -82,7 +82,7 @@
         android:layout_height="@dimen/activity_start_edittext_height"
         android:text="Create"
         android:onClick="onClickToLogin"
-        android:textColor="@color/textMain"
+        android:textColor="@color/gray10"
         android:background="@color/magentaDark"
         android:typeface="sans"
         android:layout_marginTop="10dp"

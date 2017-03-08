@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelem.fragments.activitylogin;
+package nyc.c4q.rusili.parallelem.activityLogin.splash;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
@@ -14,12 +14,11 @@ import android.widget.ImageView;
 
 import nyc.c4q.rusili.parallelem.R;
 
-public class FragmentLoginSplash extends Fragment {
+public class FragmentLoginSplash extends Fragment implements FragmentLoginSplashContract.View{
+    private FragmentLoginSplashContract.Presenter mPresenter;
     private View mView;
     private ImageView parallelLineLeft;
     private ImageView parallelLineRight;
-    private ImageView parallelLineLeft2;
-    private ImageView parallelLineRight2;
     private ImageView parallelWordLeft;
     private ImageView parallelWordRight;
 
@@ -28,31 +27,20 @@ public class FragmentLoginSplash extends Fragment {
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_login_splash, container, false);
+        initialize();
         splashLineAnimation();
-
         return mView;
     }
 
-    private void splashPostLineAnimation () {
-        parallelLineLeft2 = (ImageView) mView.findViewById(R.id.fragment_login_splash_lineleft2);
-        parallelLineRight2 = (ImageView) mView.findViewById(R.id.fragment_login_splash_lineright2);
-        parallelLineLeft2.setVisibility(View.VISIBLE);
-        parallelLineRight2.setVisibility(View.VISIBLE);
-
-        final AnimatorSet setFadeDown = (AnimatorSet) AnimatorInflater.loadAnimator(mView.getContext(),
-                R.animator.animator_fade_out_down);
-        setFadeDown.setTarget(parallelLineLeft2);
-        setFadeDown.start();
-
-        final AnimatorSet setFadeUp = (AnimatorSet) AnimatorInflater.loadAnimator(mView.getContext(),
-                R.animator.animator_fade_out_up);
-        setFadeUp.setTarget(parallelLineRight2);
-        setFadeUp.start();
+    public void initialize () {
+        if (mPresenter == null) {
+            mPresenter = new FragmentLoginSplashPresenter(mView);
+        }
+        setPresenter(mPresenter);
+        setViews();
     }
 
     private void splashWordAnimation () {
-        parallelWordLeft = (ImageView) mView.findViewById(R.id.fragment_login_splash_wordleft);
-        parallelWordRight = (ImageView) mView.findViewById(R.id.fragment_login_splash_wordright);
         parallelWordLeft.setVisibility(View.VISIBLE);
         parallelWordRight.setVisibility(View.VISIBLE);
 
@@ -68,8 +56,6 @@ public class FragmentLoginSplash extends Fragment {
     }
 
     private void splashLineAnimation () {
-        parallelLineLeft = (ImageView) mView.findViewById(R.id.fragment_login_splash_lineleft);
-        parallelLineRight = (ImageView) mView.findViewById(R.id.fragment_login_splash_lineright);
         parallelLineLeft.setVisibility(View.VISIBLE);
         parallelLineRight.setVisibility(View.VISIBLE);
 
@@ -122,5 +108,18 @@ public class FragmentLoginSplash extends Fragment {
             }
         });
         parallelLineLeft.startAnimation(accelerateDown);
+    }
+
+    @Override
+    public void setPresenter (FragmentLoginSplashContract.Presenter presenterParam) {
+        this.mPresenter = presenterParam;
+    }
+
+    @Override
+    public void setViews () {
+        parallelWordLeft = (ImageView) mView.findViewById(R.id.fragment_login_splash_wordleft);
+        parallelWordRight = (ImageView) mView.findViewById(R.id.fragment_login_splash_wordright);
+        parallelLineLeft = (ImageView) mView.findViewById(R.id.fragment_login_splash_lineleft);
+        parallelLineRight = (ImageView) mView.findViewById(R.id.fragment_login_splash_lineright);
     }
 }

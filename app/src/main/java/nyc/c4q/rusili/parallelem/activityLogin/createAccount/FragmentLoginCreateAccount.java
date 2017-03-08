@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelem.fragments.activitylogin;
+package nyc.c4q.rusili.parallelem.activityLogin.createAccount;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +11,8 @@ import android.widget.EditText;
 
 import nyc.c4q.rusili.parallelem.R;
 
-public class FragmentLoginCreateAccount extends Fragment {
+public class FragmentLoginCreateAccount extends Fragment implements FragmentLoginCreateAccountContract.View {
+    private FragmentLoginCreateAccountContract.Presenter mPresenter;
     private View mView;
     private Button buttonCreateAccount;
     private String username;
@@ -25,12 +26,24 @@ public class FragmentLoginCreateAccount extends Fragment {
         return mView;
     }
 
-    private void initialize () {
+    public void initialize () {
+        if (mPresenter == null) {
+            mPresenter = new FragmentLoginCreateAccountPresenter(mView);
+        }
+        setPresenter(mPresenter);
+        setViews();
+    }
+
+    public void setViews (){
         EditText editTextUsername = (EditText) mView.findViewById(R.id.fragment_login_createaccount_edittext_username);
         EditText editTextPassword = (EditText) mView.findViewById(R.id.fragment_login_createaccount_edittext_password);
 
         username = editTextUsername.getText().toString();
         password = editTextPassword.getText().toString();
+    }
 
+    @Override
+    public void setPresenter (FragmentLoginCreateAccountContract.Presenter presenterParam) {
+        this.mPresenter = presenterParam;
     }
 }

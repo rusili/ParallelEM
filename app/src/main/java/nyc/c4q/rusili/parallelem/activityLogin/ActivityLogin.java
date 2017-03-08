@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelem.activities;
+package nyc.c4q.rusili.parallelem.activityLogin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import nyc.c4q.rusili.parallelem.R;
-import nyc.c4q.rusili.parallelem.fragments.activitylogin.FragmentLoginCreateAccount;
-import nyc.c4q.rusili.parallelem.fragments.activitylogin.FragmentLoginLogin;
-import nyc.c4q.rusili.parallelem.fragments.activitylogin.FragmentLoginSplash;
+import nyc.c4q.rusili.parallelem.activityLogin.createAccount.FragmentLoginCreateAccount;
+import nyc.c4q.rusili.parallelem.activityLogin.login.FragmentLoginLogin;
+import nyc.c4q.rusili.parallelem.activityLogin.splash.FragmentLoginSplash;
+import nyc.c4q.rusili.parallelem.activitySetUp.ActivitySetUp;
 import nyc.c4q.rusili.parallelem.utility.CustomAlertDialog;
 import nyc.c4q.rusili.parallelem.utility.CustomSoundEffects;
 import nyc.c4q.rusili.parallelem.utility.CustomToast;
@@ -99,7 +100,7 @@ public class ActivityLogin extends AppCompatActivity {
 
     public void onClickToActivityManager (View view) {
         finish();
-        Intent intentToActivityStart = new Intent(this, ActivityManager.class);
+        Intent intentToActivityStart = new Intent(this, ActivitySetUp.class);
         startActivity(intentToActivityStart);
     }
 }

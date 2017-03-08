@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelem.fragments.activitylogin;
+package nyc.c4q.rusili.parallelem.activityLogin.login;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +11,8 @@ import android.widget.EditText;
 
 import nyc.c4q.rusili.parallelem.R;
 
-public class FragmentLoginLogin extends Fragment {
+public class FragmentLoginLogin extends Fragment implements FragmentLoginLoginContract.View{
+    private FragmentLoginLoginContract.Presenter mPresenter;
     private View mView;
     private Button buttonLogin;
     private String username;
@@ -25,11 +26,25 @@ public class FragmentLoginLogin extends Fragment {
         return mView;
     }
 
-    private void initialize () {
+    public void initialize () {
+        if (mPresenter == null) {
+            mPresenter = new FragmentLoginLoginPresenter(mView);
+        }
+        setPresenter(mPresenter);
+        setViews();
+    }
+
+    public void setViews () {
         EditText editTextUsername = (EditText) mView.findViewById(R.id.fragment_login_login_edittext_username);
         EditText editTextPassword = (EditText) mView.findViewById(R.id.fragment_login_login_edittext_password);
+        buttonLogin = (Button) mView.findViewById(R.id.fragment_login_login_button_login);
 
         username = editTextUsername.getText().toString();
         password = editTextPassword.getText().toString();
+    }
+
+    @Override
+    public void setPresenter (FragmentLoginLoginContract.Presenter presenter) {
+        this.mPresenter = presenter;
     }
 }
