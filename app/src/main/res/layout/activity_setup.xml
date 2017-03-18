@@ -33,6 +33,7 @@
         >
 
         <TextView
+            android:id="@+id/activity_setup_textview_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create Event"
@@ -49,37 +50,13 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/activity_setup_button_next"
-        android:layout_width="96dp"
-        android:layout_height="48dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Next"
-        />
-
-    <Button
-        android:id="@+id/activity_setup_button_previous"
-        android:layout_width="96dp"
-        android:layout_height="48dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Prev"
-        />
-
     <FrameLayout
+        android:id="@+id/activity_setup_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/activity_setup_statusbar"
-        android:layout_above="@id/activity_setup_button_next"
         >
         <include layout="@layout/activity_setup_viewpager"></include>
     </FrameLayout>
-
-
 
 </RelativeLayout>

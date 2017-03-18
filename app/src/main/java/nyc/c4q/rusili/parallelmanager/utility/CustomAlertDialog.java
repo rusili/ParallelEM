@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 // Custom alert dialog allowing the user to use their own layout, title, text, and icon. Defaults to finish() onClick
 // Parameters:  1) Context
@@ -12,8 +15,8 @@ import android.content.DialogInterface;
 
 public class CustomAlertDialog {
 
-    public void exit (final Context contextParam) {
-        new AlertDialog.Builder(contextParam)
+    public void exit (final Context contextP) {
+        new AlertDialog.Builder(contextP)
                 .setIcon(null)
                 .setView(null)
                 .setTitle("Exiting App")
@@ -21,7 +24,26 @@ public class CustomAlertDialog {
                 .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick (DialogInterface dialog, int which) {
-                        ((Activity) contextParam).finish();
+                        ((Activity) contextP).finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    public void confirmReplaceFragment (final Activity activityP, final Fragment fragmentP, final int containerID, final TextView textViewStep, final TextView textViewOverview) {
+        new AlertDialog.Builder(activityP)
+                .setIcon(null)
+                .setView(null)
+                .setTitle("Confirm")
+                .setMessage("Are you sure you want to continue?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick (DialogInterface dialog, int which) {
+                        textViewStep.setText("Step 4 of 4 - Questions");
+                        textViewOverview.setText("Set Up Questions");
+                        ((AppCompatActivity) activityP).getSupportFragmentManager()
+                                .beginTransaction().replace(containerID, fragmentP).commit();
                     }
                 })
                 .setNegativeButton("No", null)

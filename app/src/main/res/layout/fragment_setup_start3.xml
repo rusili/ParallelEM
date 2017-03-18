@@ -26,4 +26,11 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/fragment_setup_start3_imageswitcher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ImageView>
+
 </LinearLayout>

@@ -25,6 +25,7 @@
             android:textSize="16sp"
             android:hint="Event name:"
             android:layout_marginLeft="12dp"
+            android:singleLine="true"
             />
     </LinearLayout>
 
@@ -47,6 +48,7 @@
             android:textSize="16sp"
             android:hint="Event location:"
             android:layout_marginLeft="12dp"
+            android:singleLine="true"
             />
     </LinearLayout>
 
@@ -68,6 +70,7 @@
             android:textSize="16sp"
             android:hint="Host name:"
             android:layout_marginLeft="12dp"
+            android:singleLine="true"
             />
     </LinearLayout>
 
@@ -89,6 +92,7 @@
             android:textSize="16sp"
             android:hint="Event ID:"
             android:layout_marginLeft="12dp"
+            android:singleLine="true"
             />
     </LinearLayout>
 

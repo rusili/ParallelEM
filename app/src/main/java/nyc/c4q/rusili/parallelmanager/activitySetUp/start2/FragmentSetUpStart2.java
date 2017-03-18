@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +21,14 @@ public class FragmentSetUpStart2 extends Fragment implements View.OnClickListene
     private FragmentSetUpStart2Contract.Presenter mPresenter;
     private View mView;
 
-    private SimpleDateFormat mFormatter = new SimpleDateFormat("MMMM dd yyyy hh:mm aa");
+    private SimpleDateFormat mFormatterDate = new SimpleDateFormat("MMMM dd yyyy");
+    private SimpleDateFormat mFormatterTime = new SimpleDateFormat("hh:mm aa");
     private TextView textViewPickStart;
     private TextView textViewPickEnd;
-    private Button buttonNext;
+    private TextView textViewDate1;
+    private TextView textViewDate2;
+    private TextView textViewTime1;
+    private TextView textViewTime2;
 
     public static FragmentSetUpStart2 newInstance(int id) {
         FragmentSetUpStart2 fragment = new FragmentSetUpStart2();
@@ -60,6 +63,10 @@ public class FragmentSetUpStart2 extends Fragment implements View.OnClickListene
     public void setViews () {
         textViewPickStart = (TextView) mView.findViewById(R.id.fragment_setup_start_pick1);
         textViewPickEnd = (TextView) mView.findViewById(R.id.fragment_setup_start_pick2);
+        textViewDate1 = (TextView) mView.findViewById(R.id.fragment_setup_start_date1);
+        textViewDate2 = (TextView) mView.findViewById(R.id.fragment_setup_start_date2);
+        textViewTime1 = (TextView) mView.findViewById(R.id.fragment_setup_start_time1);
+        textViewTime2 = (TextView) mView.findViewById(R.id.fragment_setup_start_time2);
     }
 
     private void setOnClickListeners(){
@@ -67,14 +74,12 @@ public class FragmentSetUpStart2 extends Fragment implements View.OnClickListene
         textViewPickEnd.setOnClickListener(this);
     }
 
-    private SlideDateTimeListener listener = new SlideDateTimeListener() {
+    private SlideDateTimeListener listener1 = new SlideDateTimeListener() {
 
         @Override
         public void onDateTimeSet(Date date) {
-            // Do something with the date. This Date object contains
-            // the date and time that the user has selected.
-            Toast.makeText(mView.getContext(),
-                    mFormatter.format(date), Toast.LENGTH_SHORT).show();
+            textViewDate1.setText(mFormatterDate.format(date));
+            textViewTime1.setText(mFormatterTime.format(date));
         }
 
         @Override
@@ -84,12 +89,26 @@ public class FragmentSetUpStart2 extends Fragment implements View.OnClickListene
         }
     };
 
+    private SlideDateTimeListener listener2 = new SlideDateTimeListener() {
+
+        @Override
+        public void onDateTimeSet(Date date) {
+            textViewDate2.setText(mFormatterDate.format(date));
+            textViewTime2.setText(mFormatterTime.format(date));
+        }
+
+        @Override
+        public void onDateTimeCancel() {
+            Toast.makeText(mView.getContext(),
+                    "Canceled", Toast.LENGTH_SHORT).show();
+        }
+    };
     @Override
     public void onClick (View v) {
         switch (v.getId()){
             case (R.id.fragment_setup_start_pick1): {
                 new SlideDateTimePicker.Builder(getActivity().getSupportFragmentManager())
-                        .setListener(listener)
+                        .setListener(listener1)
                         .setInitialDate(new Date())
                         .setTheme(SlideDateTimePicker.HOLO_LIGHT)
                         .setIndicatorColor(getResources().getColor(R.color.purpleDark))
@@ -99,7 +118,7 @@ public class FragmentSetUpStart2 extends Fragment implements View.OnClickListene
             }
             case (R.id.fragment_setup_start_pick2): {
                 new SlideDateTimePicker.Builder(getActivity().getSupportFragmentManager())
-                        .setListener(listener)
+                        .setListener(listener2)
                         .setInitialDate(new Date())
                         .setTheme(SlideDateTimePicker.HOLO_LIGHT)
                         .setIndicatorColor(getResources().getColor(R.color.purpleDark))
