@@ -15,7 +15,7 @@ public class FragmentMonitorNotifications extends Fragment implements FragmentMo
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_setup_start, container, false);
+        mView = inflater.inflate(R.layout.fragment_setup_start1, container, false);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 

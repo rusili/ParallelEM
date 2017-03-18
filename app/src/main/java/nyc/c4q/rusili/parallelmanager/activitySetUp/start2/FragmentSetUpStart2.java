@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelmanager.activitySetUp.start;
+package nyc.c4q.rusili.parallelmanager.activitySetUp.start2;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,28 +17,36 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import nyc.c4q.rusili.parallelmanager.R;
-import nyc.c4q.rusili.parallelmanager.activitySetUp.questions.FragmentSetUpQuestions;
 
-public class FragmentSetUpStart extends Fragment implements View.OnClickListener, FragmentSetUpStartContract.View{
-    private FragmentSetUpStartContract.Presenter mPresenter;
+public class FragmentSetUpStart2 extends Fragment implements View.OnClickListener, FragmentSetUpStart2Contract.View{
+    private FragmentSetUpStart2Contract.Presenter mPresenter;
     private View mView;
-    private int containerID = R.id.activity_setup_fragment_container;
 
     private SimpleDateFormat mFormatter = new SimpleDateFormat("MMMM dd yyyy hh:mm aa");
     private TextView textViewPickStart;
     private TextView textViewPickEnd;
     private Button buttonNext;
 
+    public static FragmentSetUpStart2 newInstance(int id) {
+        FragmentSetUpStart2 fragment = new FragmentSetUpStart2();
+
+        Bundle args = new Bundle();
+        args.putInt("id", id);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_setup_start, container, false);
+        mView = inflater.inflate(R.layout.fragment_setup_start2, container, false);
         initialize();
         return mView;
     }
 
     @Override
-    public void setPresenter (FragmentSetUpStartContract.Presenter presenterParam) {
+    public void setPresenter (FragmentSetUpStart2Contract.Presenter presenterParam) {
         this.mPresenter = presenterParam;
     }
 
@@ -52,13 +60,11 @@ public class FragmentSetUpStart extends Fragment implements View.OnClickListener
     public void setViews () {
         textViewPickStart = (TextView) mView.findViewById(R.id.fragment_setup_start_pick1);
         textViewPickEnd = (TextView) mView.findViewById(R.id.fragment_setup_start_pick2);
-        buttonNext = (Button) mView.findViewById(R.id.fragment_setup_start_button_next);
     }
 
     private void setOnClickListeners(){
         textViewPickStart.setOnClickListener(this);
         textViewPickEnd.setOnClickListener(this);
-        buttonNext.setOnClickListener(this);
     }
 
     private SlideDateTimeListener listener = new SlideDateTimeListener() {
@@ -100,16 +106,6 @@ public class FragmentSetUpStart extends Fragment implements View.OnClickListener
                         .build()
                         .show();
                 break;
-            }
-            case (R.id.fragment_setup_start_button_next): {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right)
-                        .replace(containerID, new FragmentSetUpQuestions())
-                        .commit();
-                break;
-            }
-            case (R.id.fragment_setup_start_upload): {
-                // Something
             }
         }
     }

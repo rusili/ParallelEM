@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelmanager.activitySetUp.questions;
+package nyc.c4q.rusili.parallelmanager.activitySetUp.start1;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,20 +10,33 @@ import android.widget.Button;
 
 import nyc.c4q.rusili.parallelmanager.R;
 
-public class FragmentSetUpQuestions extends Fragment implements View.OnClickListener, FragmentSetUpQuestionsContract.View{
+public class FragmentSetUpStart1 extends Fragment implements View.OnClickListener, FragmentSetUpStart1Contract.View{
+    private FragmentSetUpStart1Contract.Presenter mPresenter;
     private View mView;
+
     private Button buttonNext;
+
+    public static FragmentSetUpStart1 newInstance(int id) {
+        FragmentSetUpStart1 fragment = new FragmentSetUpStart1();
+
+        Bundle args = new Bundle();
+        args.putInt("id", id);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_setup_questions, container, false);
+        mView = inflater.inflate(R.layout.fragment_setup_start1, container, false);
+        initialize();
         return mView;
     }
 
     @Override
-    public void setPresenter (FragmentSetUpQuestionsContract.Presenter presenter) {
-
+    public void setPresenter (FragmentSetUpStart1Contract.Presenter presenterParam) {
+        this.mPresenter = presenterParam;
     }
 
     @Override
@@ -34,19 +47,14 @@ public class FragmentSetUpQuestions extends Fragment implements View.OnClickList
 
     @Override
     public void setViews () {
-        buttonNext = (Button) mView.findViewById(R.id.fragment_setup_questions_button_next);
     }
 
     private void setOnClickListeners(){
-        buttonNext.setOnClickListener(this);
     }
 
     @Override
     public void onClick (View v) {
         switch (v.getId()){
-            case (R.id.fragment_setup_questions_button_next): {
-                break;
-            }
         }
     }
 }

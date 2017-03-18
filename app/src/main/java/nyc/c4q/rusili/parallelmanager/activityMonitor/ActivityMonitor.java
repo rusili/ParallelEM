@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import nyc.c4q.rusili.parallelmanager.R;
-import nyc.c4q.rusili.parallelmanager.activitySetUp.start.FragmentSetUpStart;
+import nyc.c4q.rusili.parallelmanager.activitySetUp.start1.FragmentSetUpStart1;
 import nyc.c4q.rusili.parallelmanager.utility.CustomAlertDialog;
 import nyc.c4q.rusili.parallelmanager.utility.CustomSoundEffects;
 
@@ -28,16 +28,16 @@ public class ActivityMonitor extends AppCompatActivity {
     }
 
     private void loadFragmentStart () {
-        FragmentSetUpStart fragmentSetUpStart = new FragmentSetUpStart();
+        FragmentSetUpStart1 fragmentSetUpStart1 = new FragmentSetUpStart1();
         getSupportFragmentManager().beginTransaction()
-                .replace(containerID, fragmentSetUpStart)
+                .replace(containerID, fragmentSetUpStart1)
                 .commit();
     }
 
     @Override
     public void onBackPressed () {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(containerID);
-        if (currentFragment instanceof FragmentSetUpStart) {
+        if (currentFragment instanceof FragmentSetUpStart1) {
             mCustomAlertDialog.exit(this);
         } else {
             super.onBackPressed();

@@ -17,11 +17,12 @@
                   android:screenOrientation="portrait"
                   android:theme="@style/ActivityLogin"
             >
+
         </activity>
 
         <activity android:name="nyc.c4q.rusili.parallelmanager.activitySetUp.ActivitySetUp"
                   android:screenOrientation="portrait"
-                  android:theme="@style/ActivityStart"
+                  android:theme="@style/ActivitySetUp"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +31,7 @@
         </activity>
         <activity android:name="nyc.c4q.rusili.parallelmanager.activityMonitor.ActivityMonitor"
                   android:screenOrientation="portrait"
-                  android:theme="@style/ActivityStart"
+                  android:theme="@style/ActivityMonitor"
             >
         </activity>
     </application>

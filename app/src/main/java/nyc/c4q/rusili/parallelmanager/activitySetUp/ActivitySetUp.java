@@ -1,60 +1,100 @@
 package nyc.c4q.rusili.parallelmanager.activitySetUp;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
+import github.chenupt.springindicator.SpringIndicator;
 import nyc.c4q.rusili.parallelmanager.R;
-import nyc.c4q.rusili.parallelmanager.activitySetUp.questions.FragmentSetUpQuestions;
-import nyc.c4q.rusili.parallelmanager.activitySetUp.start.FragmentSetUpStart;
 import nyc.c4q.rusili.parallelmanager.utility.CustomAlertDialog;
-import nyc.c4q.rusili.parallelmanager.utility.CustomSoundEffects;
+import nyc.c4q.rusili.parallelmanager.utility.viewpager.ViewPagerAdapter;
 
-public class ActivitySetUp extends AppCompatActivity {
-    private int containerID = R.id.activity_setup_fragment_container;
-    private CustomSoundEffects mCustomSoundEffects;
+public class ActivitySetUp extends AppCompatActivity implements View.OnClickListener {
     private CustomAlertDialog mCustomAlertDialog = new CustomAlertDialog();
+    private ViewPager viewPager;
+    private SpringIndicator springIndicator;
+    private ViewPagerAdapter viewPagerAdapter;
+    private TextView textViewStep;
+    private Button buttonNext;
+    private Button buttonPrevious;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
         initialize();
-
-        loadFragmentStart();
     }
 
     private void initialize () {
-        mCustomSoundEffects = new CustomSoundEffects(getWindow().getDecorView().getRootView());
+        setViews();
+        setOnClickListeners();
+        setupViewpager();
     }
 
-    private void loadFragmentStart () {
-        FragmentSetUpStart fragmentSetUpStart = new FragmentSetUpStart();
-        getSupportFragmentManager().beginTransaction()
-                .add(containerID, fragmentSetUpStart)
-                .commit();
+    private void setOnClickListeners () {
+        buttonNext.setOnClickListener(this);
+        buttonPrevious.setOnClickListener(this);
     }
 
-    private void loadFragmentSetUpQuestions () {
-        FragmentSetUpQuestions fragmentSetUpQuestions = new FragmentSetUpQuestions();
-        getSupportFragmentManager().beginTransaction()
-                .replace(containerID, fragmentSetUpQuestions)
-                .commit();
+    private void setViews () {
+        buttonNext = (Button) findViewById(R.id.activity_setup_button_next);
+        buttonPrevious = (Button) findViewById(R.id.activity_setup_button_previous);
+        textViewStep = (TextView) findViewById(R.id.activity_setup_textview_step);
     }
+
+    public void setupViewpager() {
+        viewPager = (ViewPager) findViewById(R.id.activity_setup_viewpager);
+        springIndicator = (SpringIndicator) findViewById(R.id.activity_setup_springindicator);
+
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled (int positionP, float positionOffset, int positionOffsetPixels) {
+                int position = positionP + 1;
+                String stepName = null;
+                if (position == 1){
+                    stepName = "Event Basics";
+                    buttonPrevious.setVisibility(View.INVISIBLE);
+                    buttonNext.setVisibility(View.VISIBLE);
+                } else if (position == 2){
+                    stepName = "Date and Time";
+                    buttonPrevious.setVisibility(View.VISIBLE);
+                    buttonNext.setVisibility(View.VISIBLE);
+                } else if (position == 3){
+                    stepName = "Miscellaneous";
+                    buttonPrevious.setVisibility(View.VISIBLE);
+                    buttonNext.setVisibility(View.INVISIBLE);
+                }
+                textViewStep.setText("Step " + position + " of 3 - " + stepName);
+            }
+
+            @Override
+            public void onPageSelected (int position) {}
+            @Override
+            public void onPageScrollStateChanged (int state) {}
+        });
+        springIndicator.setViewPager(viewPager);
+    }
+
 
     @Override
     public void onBackPressed () {
-        Fragment currentFragment = getSupportFragmentManager().findFragmentById(containerID);
-        if (currentFragment instanceof FragmentSetUpStart) {
-            mCustomAlertDialog.exit(this);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
-    public void onClickToSetUpQuestions (View view) {
-        mCustomSoundEffects.setDefaultClick();
-        loadFragmentSetUpQuestions();
+    @Override
+    public void onClick (View v) {
+        switch (v.getId()){
+            case R.id.activity_setup_button_previous:
+                viewPager.setCurrentItem(viewPager.getCurrentItem()-1, true);
+                break;
+            case R.id.activity_setup_button_next:
+                viewPager.setCurrentItem(viewPager.getCurrentItem()+1, true);
+                break;
+        }
     }
 }

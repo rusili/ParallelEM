@@ -1,17 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
     android:layout_height="match_parent"
+              android:orientation="vertical"
     >
 
-    <LinearLayout
-        android:id="@+id/activity_setup_fragment_container"
-        android:orientation="horizontal"
+    <RelativeLayout
+        android:id="@+id/activity_setup_actionbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="48dp"
         android:gravity="center_vertical"
         >
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:src="@drawable/lines"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_setup_statusbar"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:background="#10000000"
+        android:layout_below="@id/activity_setup_actionbar"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Event"
+            android:textSize="24sp"
+            android:layout_marginBottom="4dp"
+            />
+        <TextView
+            android:id="@+id/activity_setup_textview_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Step 1 of 3 - Event Basics"
+            android:textSize="18sp"
+            />
+
     </LinearLayout>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/activity_setup_button_next"
+        android:layout_width="96dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="Next"
+        />
+
+    <Button
+        android:id="@+id/activity_setup_button_previous"
+        android:layout_width="96dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="Prev"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activity_setup_statusbar"
+        android:layout_above="@id/activity_setup_button_next"
+        >
+        <include layout="@layout/activity_setup_viewpager"></include>
+    </FrameLayout>
+
+
+
+</RelativeLayout>

@@ -49,4 +49,8 @@ dependencies {
 
     // Slide Date Time Picker:
     compile 'com.github.jjobes:SlideDateTimePicker:v1.0.4'
+
+    // Spring Indicator:
+    compile 'com.github.chenupt.android:springindicator:1.0.2@aar'
+
 }
