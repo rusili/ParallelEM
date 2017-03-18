@@ -89,4 +89,103 @@
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="Enter your event's ID:"
+            />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel"
+            >
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:hint="Event ID"
+                android:gravity="center_vertical"
+                android:theme="@style/TextLabel"
+                android:typeface="sans"
+                android:textColor="@color/textMain"
+                />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/fragment_setup_start_pick1"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:text="Pick a start date and time"
+            android:textColor="@color/textMain"
+            />
+
+        <TextView
+            android:id="@+id/fragment_setup_start_pick2"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:text="Pick an end date and time"
+            android:textColor="@color/textMain"
+            />
+
+        <TextView
+            android:id="@+id/fragment_setup_start_date1"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            />
+        <TextView
+            android:id="@+id/fragment_setup_start_time1"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            />
+        <TextView
+            android:id="@+id/fragment_setup_start_date2"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            />
+        <TextView
+            android:id="@+id/fragment_setup_start_time2"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload your floorplan"
+            />
+
+        <Button
+            android:id="@+id/fragment_setup_start_upload"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Upload"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/fragment_setup_start_button_next"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Next"
+        />
 </LinearLayout>

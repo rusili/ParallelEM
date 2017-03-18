@@ -12,14 +12,14 @@ import nyc.c4q.rusili.parallelmanager.utility.CustomAlertDialog;
 import nyc.c4q.rusili.parallelmanager.utility.CustomSoundEffects;
 
 public class ActivitySetUp extends AppCompatActivity {
-    private int containerID = R.id.activity_monitor_fragment_container;
+    private int containerID = R.id.activity_setup_fragment_container;
     private CustomSoundEffects mCustomSoundEffects;
     private CustomAlertDialog mCustomAlertDialog = new CustomAlertDialog();
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_monitor);
+        setContentView(R.layout.activity_setup);
         initialize();
 
         loadFragmentStart();
@@ -32,7 +32,7 @@ public class ActivitySetUp extends AppCompatActivity {
     private void loadFragmentStart () {
         FragmentSetUpStart fragmentSetUpStart = new FragmentSetUpStart();
         getSupportFragmentManager().beginTransaction()
-                .replace(containerID, fragmentSetUpStart)
+                .add(containerID, fragmentSetUpStart)
                 .commit();
     }
 

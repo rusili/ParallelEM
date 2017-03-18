@@ -56,7 +56,7 @@
         android:layout_width="@dimen/activity_start_edittext_width"
         android:layout_height="@dimen/activity_start_edittext_height"
         android:text="Login"
-        android:onClick="onClickToActivityManager"
+        android:onClick="onClickToActivitySetup"
         android:textColor="@color/gray10"
         android:typeface="sans"
         android:background="@color/magentaDark"

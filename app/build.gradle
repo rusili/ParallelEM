@@ -43,4 +43,10 @@ dependencies {
 
     // Swipe Stack:
     compile 'link.fls:swipestack:0.3.0'
+
+    // Date Time Picker:
+    compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
+
+    // Slide Date Time Picker:
+    compile 'com.github.jjobes:SlideDateTimePicker:v1.0.4'
 }

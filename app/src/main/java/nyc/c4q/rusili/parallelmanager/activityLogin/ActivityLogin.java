@@ -98,7 +98,7 @@ public class ActivityLogin extends AppCompatActivity {
         }
     }
 
-    public void onClickToActivityManager (View view) {
+    public void onClickToActivitySetup (View view) {
         finish();
         Intent intentToActivityStart = new Intent(this, ActivitySetUp.class);
         startActivity(intentToActivityStart);

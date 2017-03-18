@@ -24,6 +24,9 @@
     <color name="gray70">#4d4d4d</color>
     <color name="gray90">#1a1a1a</color>
 
+    <color name="icon_enabled">#FF6bdecd</color>
+    <color name="icon_disabled">#FFf9f9f9</color>
+
 
     <color name="activity_login_edittext_hint">#80f9f9f9</color>
 
