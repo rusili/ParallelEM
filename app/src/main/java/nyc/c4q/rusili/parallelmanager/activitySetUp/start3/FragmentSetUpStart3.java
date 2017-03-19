@@ -39,7 +39,7 @@ public class FragmentSetUpStart3 extends Fragment implements View.OnClickListene
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_setup_start3, container, false);
+        mView = inflater.inflate(R.layout.fragment_setup_start4, container, false);
         initialize();
         return mView;
     }

@@ -10,21 +10,24 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload your floorplan"
+            />
+
+        <Button
+            android:id="@+id/fragment_setup_start_upload"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Enter a radius:"
+            android:text="Upload"
             />
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </Spinner>
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/fragment_setup_start4_map_placeholder"
+        android:id="@+id/fragment_setup_start3_imageswitcher"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

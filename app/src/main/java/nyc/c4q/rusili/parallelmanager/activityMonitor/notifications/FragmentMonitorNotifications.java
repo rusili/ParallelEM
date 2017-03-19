@@ -6,16 +6,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import nyc.c4q.rusili.parallelmanager.R;
 
 public class FragmentMonitorNotifications extends Fragment implements FragmentMonitorNotificationsContract.View{
     private View mView;
+    private WebView myWebView;
 
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_setup_start1, container, false);
+        mView = inflater.inflate(R.layout.fragment_monitor_notifications, container, false);
+        initialize();
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -26,11 +29,12 @@ public class FragmentMonitorNotifications extends Fragment implements FragmentMo
 
     @Override
     public void initialize () {
-
+        setViews();
     }
 
     @Override
     public void setViews () {
-
+        myWebView = (WebView) mView.findViewById(R.id.fragment_monitor_notifications_webview);
+        myWebView.loadUrl("https://console.firebase.google.com/project/parallel-3276f/notification");
     }
 }

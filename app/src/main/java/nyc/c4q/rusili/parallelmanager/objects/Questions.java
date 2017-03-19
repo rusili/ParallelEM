@@ -2,30 +2,37 @@ package nyc.c4q.rusili.parallelmanager.objects;
 
 public class Questions {
     String question;
-    String leftAnswer;
-    String rightAnswer;
+    String answer;
+    int leftResID = 0;
+    int rightResID = 0;
 
-    public void setQuestion (String question) {
-        this.question = question;
+    public Questions (String questionParam) {
+        this.question = questionParam;
     }
 
-    public void setLeftAnswer (String leftAnswer) {
-        this.leftAnswer = leftAnswer;
+    public Questions (String questionParam, int leftResIDParam, int rightResIDParam) {
+        this.question = questionParam;
+        this.leftResID = leftResIDParam;
+        this.rightResID = rightResIDParam;
     }
 
-    public void setRightAnswer (String rightAnswer) {
-        this.rightAnswer = rightAnswer;
+    public String getAnswer () {
+        return answer;
+    }
+
+    public void setAnswer (String answer) {
+        this.answer = answer;
     }
 
     public String getQuestion () {
         return question;
     }
 
-    public String getLeftAnswer () {
-        return leftAnswer;
+    public int getLeftResID () {
+        return leftResID;
     }
 
-    public String getRightAnswer () {
-        return rightAnswer;
+    public int getRightResID () {
+        return rightResID;
     }
 }

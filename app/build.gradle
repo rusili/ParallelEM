@@ -50,6 +50,9 @@ dependencies {
     // Picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
 
+    // SuperRecyclerView:
+    compile 'com.malinskiy:superrecyclerview:1.1.4'
+
     // Swipe Stack:
     compile 'link.fls:swipestack:0.3.0'
 
@@ -64,4 +67,16 @@ dependencies {
 
     // Viewpager Animations:
     compile 'com.eftimoff:android-viewpager-transformers:1.0.1@aar'
+
+    // Floating Action Button:
+    compile 'com.getbase:floatingactionbutton:1.10.1'
+
+    // Toggle Expand Layout
+    compile 'com.github.fenjuly:ToggleExpandLayout:774e497692'
+    compile 'com.kyleduo.switchbutton:library:1.2.9'
+
+    // Advanced Recycler View;
+    compile ('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.10.4@aar'){
+        transitive=true
+    }
 }

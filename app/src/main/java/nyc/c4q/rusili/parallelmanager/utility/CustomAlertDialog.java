@@ -35,13 +35,11 @@ public class CustomAlertDialog {
         new AlertDialog.Builder(activityP)
                 .setIcon(null)
                 .setView(null)
-                .setTitle("Confirm")
-                .setMessage("Are you sure you want to continue?")
+                .setTitle("Create")
+                .setMessage("Are you sure you want to create this event?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick (DialogInterface dialog, int which) {
-                        textViewStep.setText("Step 4 of 4 - Questions");
-                        textViewOverview.setText("Set Up Questions");
                         ((AppCompatActivity) activityP).getSupportFragmentManager()
                                 .beginTransaction().replace(containerID, fragmentP).commit();
                     }

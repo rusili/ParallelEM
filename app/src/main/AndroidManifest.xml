@@ -17,17 +17,17 @@
                   android:screenOrientation="portrait"
                   android:theme="@style/ActivityLogin"
             >
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name="nyc.c4q.rusili.parallelmanager.activitySetUp.ActivitySetUp"
                   android:screenOrientation="portrait"
                   android:theme="@style/ActivitySetUp"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name="nyc.c4q.rusili.parallelmanager.activityMonitor.ActivityMonitor"
                   android:screenOrientation="portrait"
