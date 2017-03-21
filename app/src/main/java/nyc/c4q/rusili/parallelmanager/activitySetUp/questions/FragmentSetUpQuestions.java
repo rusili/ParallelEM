@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ public class FragmentSetUpQuestions extends Fragment implements View.OnClickList
     private View mView;
     private Button buttonNext;
     private FloatingActionButton floatingActionButton;
+    private RecyclerView recyclerView;
 
     @Nullable
     @Override
@@ -34,9 +36,7 @@ public class FragmentSetUpQuestions extends Fragment implements View.OnClickList
     }
 
     @Override
-    public void setPresenter (FragmentSetUpQuestionsContract.Presenter presenter) {
-
-    }
+    public void setPresenter (FragmentSetUpQuestionsContract.Presenter presenter) {}
 
     @Override
     public void initialize () {
@@ -47,7 +47,6 @@ public class FragmentSetUpQuestions extends Fragment implements View.OnClickList
     @Override
     public void setViews () {
         floatingActionButton = (FloatingActionButton) mView.findViewById(R.id.fragment_setup_questions_floatingactionbutton);
-
     }
 
     private void setOnClickListeners(){
@@ -59,12 +58,7 @@ public class FragmentSetUpQuestions extends Fragment implements View.OnClickList
     public void onClick (View v) {
         switch (v.getId()){
             case R.id.fragment_setup_questions_floatingactionbutton: {
-                // Create new Card
             }
         }
-    }
-
-    private void addTempRV(){
-
     }
 }

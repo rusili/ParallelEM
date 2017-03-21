@@ -4,6 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:gravity="center_vertical"
+                android:layout_margin="24dp"
+
     >
 
     <LinearLayout
@@ -25,17 +27,25 @@
                 android:layout_height="36dp"
                 android:text="Pick a start date and time"
                 android:textColor="@color/textMain"
+                android:textAlignment="center"
+                android:textStyle="bold"
                 />
 
             <TextView
                 android:id="@+id/fragment_setup_start_date1"
                 android:layout_width="match_parent"
-                android:layout_height="24dp"
+                android:layout_height="32dp"
+                android:textAlignment="center"
+                android:textColor="@color/purpleMedium"
+                android:textSize="18sp"
                 />
             <TextView
                 android:id="@+id/fragment_setup_start_time1"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
+                android:textAlignment="center"
+                android:textColor="@color/purpleMedium"
+                android:textSize="18sp"
                 />
 
         </LinearLayout>
@@ -51,18 +61,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:text="Pick an end date and time"
+                android:textAlignment="center"
                 android:textColor="@color/textMain"
+                android:textStyle="bold"
                 />
 
             <TextView
                 android:id="@+id/fragment_setup_start_date2"
                 android:layout_width="match_parent"
-                android:layout_height="24dp"
+                android:layout_height="32dp"
+                android:textAlignment="center"
+                android:textColor="@color/purpleMedium"
+                android:textSize="18sp"
                 />
             <TextView
                 android:id="@+id/fragment_setup_start_time2"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
+                android:textAlignment="center"
+                android:textColor="@color/purpleMedium"
+                android:textSize="18sp"
                 />
         </LinearLayout>
 

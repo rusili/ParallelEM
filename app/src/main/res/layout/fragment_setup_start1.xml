@@ -3,27 +3,31 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:layout_marginLeft="24dp"
-              android:layout_marginTop="24dp"
+              android:layout_marginTop="48dp"
+              android:layout_marginBottom="24dp"
               android:gravity="center_vertical"
     >
 
     <LinearLayout
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginBottom="12dp"
+        android:layout_marginLeft="24dp"
+
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:text="Enter your event's name:"
-            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/textMain"
             />
         <EditText
             android:id="@+id/fragment_setup_start1_eventname"
             android:layout_width="200dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:textSize="16sp"
             android:hint="Event name:"
             android:layout_marginLeft="12dp"
@@ -36,18 +40,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginLeft="24dp"
+
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="24dp"
-            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/textMain"
             android:text="Enter your event location:"
 
             />
         <EditText
             android:id="@+id/fragment_setup_start1_eventlocation"
             android:layout_width="200dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:textSize="16sp"
             android:hint="Event location:"
             android:layout_marginLeft="12dp"
@@ -60,17 +67,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginLeft="24dp"
+
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="24dp"
-            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/textMain"
             android:text="Enter the host's name:"
             />
         <EditText
             android:id="@+id/fragment_setup_start1_hostname"
             android:layout_width="200dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:textSize="16sp"
             android:hint="Host name:"
             android:layout_marginLeft="12dp"
@@ -83,17 +93,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginLeft="24dp"
+
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="24dp"
-            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/textMain"
             android:text="Enter your event's ID:"
             />
         <EditText
             android:id="@+id/fragment_setup_start1_eventid"
             android:layout_width="200dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:textSize="16sp"
             android:hint="Event ID:"
             android:layout_marginLeft="12dp"

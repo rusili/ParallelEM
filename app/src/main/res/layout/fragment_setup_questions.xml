@@ -6,13 +6,21 @@
               android:layout_height="match_parent"
     >
 
-<com.malinskiy.superrecyclerview.SuperRecyclerView
-    android:id="@+id/fragment_setup_questions_superrv"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<!--<com.malinskiy.superrecyclerview.SuperRecyclerView-->
+    <!--android:id="@+id/fragment_setup_questions_superrv"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp">-->
 
-</com.malinskiy.superrecyclerview.SuperRecyclerView>
+<!--</com.malinskiy.superrecyclerview.SuperRecyclerView>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <include layout="@layout/fragment_setup_questions_viewholder"></include>
+
+    </LinearLayout>
 
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/fragment_setup_questions_floatingactionbutton"

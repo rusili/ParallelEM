@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:text="Create Event"
             android:textSize="24sp"
+            android:textColor="@color/textMain"
             android:layout_marginBottom="4dp"
             />
         <TextView

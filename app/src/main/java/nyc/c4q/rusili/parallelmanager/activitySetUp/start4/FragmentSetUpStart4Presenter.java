@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelmanager.activitySetUp.start4.start3;
+package nyc.c4q.rusili.parallelmanager.activitySetUp.start4;
 
 public class FragmentSetUpStart4Presenter implements FragmentSetUpStart4Contract.Presenter {
 

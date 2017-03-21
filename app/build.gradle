@@ -79,4 +79,6 @@ dependencies {
     compile ('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.10.4@aar'){
         transitive=true
     }
+    // TextView Animation Library:
+    compile 'hanks.xyz:htextview-library:0.1.5'
 }

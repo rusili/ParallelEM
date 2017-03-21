@@ -11,7 +11,6 @@ import com.eftimoff.viewpagertransformers.DepthPageTransformer;
 
 import github.chenupt.springindicator.SpringIndicator;
 import nyc.c4q.rusili.parallelmanager.R;
-import nyc.c4q.rusili.parallelmanager.activitySetUp.questions.FragmentSetUpQuestions;
 import nyc.c4q.rusili.parallelmanager.utility.CustomAlertDialog;
 import nyc.c4q.rusili.parallelmanager.utility.viewpager.ViewPagerAdapter;
 
@@ -89,8 +88,15 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
                     buttonPrevious.setVisibility(View.VISIBLE);
                     buttonNext.setVisibility(View.INVISIBLE);
                     buttonCreate.setVisibility(View.VISIBLE);
+                } else if (position == 6){
+                    stepName = "Event Created!";
+                    buttonPrevious.setVisibility(View.INVISIBLE);
+                buttonNext.setVisibility(View.INVISIBLE);
+                buttonCreate.setVisibility(View.INVISIBLE);
+                    SpringIndicator springIndicator = (SpringIndicator) findViewById(R.id.activity_setup_springindicator);
+                    springIndicator.setVisibility(View.INVISIBLE);
                 }
-                textViewStep.setText("Step " + position + " of 4 - " + stepName);
+                textViewStep.setText("Step " + position + " of 6 - " + stepName);
             }
 
             @Override
@@ -118,13 +124,13 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1, true);
                 break;
             case R.id.activity_setup_button_create:
-                toFragmentQuestions();
+                toFragmentCreated();
                 break;
         }
     }
 
-    private void toFragmentQuestions () {
+    private void toFragmentCreated () {
         CustomAlertDialog customAlertDialog = new CustomAlertDialog();
-        customAlertDialog.confirmReplaceFragment(this, new FragmentSetUpQuestions(), R.id.activity_setup_fragment_container, textViewStep, textViewOverview);
+        customAlertDialog.confirmReplaceFragment(this, viewPager);
     }
 }

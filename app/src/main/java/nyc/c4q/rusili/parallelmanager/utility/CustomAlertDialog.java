@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import android.support.v4.view.ViewPager;
 
 // Custom alert dialog allowing the user to use their own layout, title, text, and icon. Defaults to finish() onClick
 // Parameters:  1) Context
@@ -31,7 +29,7 @@ public class CustomAlertDialog {
                 .show();
     }
 
-    public void confirmReplaceFragment (final Activity activityP, final Fragment fragmentP, final int containerID, final TextView textViewStep, final TextView textViewOverview) {
+    public void confirmReplaceFragment (final Activity activityP, final ViewPager viewPager) {
         new AlertDialog.Builder(activityP)
                 .setIcon(null)
                 .setView(null)
@@ -40,11 +38,12 @@ public class CustomAlertDialog {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick (DialogInterface dialog, int which) {
-                        ((AppCompatActivity) activityP).getSupportFragmentManager()
-                                .beginTransaction().replace(containerID, fragmentP).commit();
+                        viewPager.setCurrentItem(viewPager.getCurrentItem()+1, true);
                     }
                 })
                 .setNegativeButton("No", null)
                 .show();
     }
+
+
 }

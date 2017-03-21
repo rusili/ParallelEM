@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelmanager.activitySetUp.start4.start3;
+package nyc.c4q.rusili.parallelmanager.activitySetUp.start4;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,6 +51,7 @@ public class FragmentSetUpStart4 extends Fragment implements View.OnClickListene
 
     @Override
     public void setViews () {
+        buttonUpload = (Button) mView.findViewById(R.id.fragment_setup_start_upload);
     }
 
     private void setOnClickListeners(){
