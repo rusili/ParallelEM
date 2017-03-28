@@ -1,16 +1,16 @@
-package nyc.c4q.rusili.parallelmanager.activitySetUp.start1;
+package nyc.c4q.rusili.parallelmanager.activitySetUp.date;
 
 import nyc.c4q.rusili.parallelmanager.BasePresenter;
 import nyc.c4q.rusili.parallelmanager.BaseView;
 
-interface FragmentSetUpStart1Contract {
+interface FragmentSetUpDateContract {
 
     interface Presenter extends BasePresenter{}
 
     interface View extends BaseView<Presenter>{
 
-        void initialize();
+        void initialize ();
 
-        void setViews();
+        void setViews ();
     }
 }

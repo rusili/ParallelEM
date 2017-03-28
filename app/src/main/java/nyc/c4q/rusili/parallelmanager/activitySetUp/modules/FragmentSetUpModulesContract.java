@@ -1,9 +1,9 @@
-package nyc.c4q.rusili.parallelmanager.activitySetUp.start2;
+package nyc.c4q.rusili.parallelmanager.activitySetUp.modules;
 
 import nyc.c4q.rusili.parallelmanager.BasePresenter;
 import nyc.c4q.rusili.parallelmanager.BaseView;
 
-interface FragmentSetUpStart2Contract {
+interface FragmentSetUpModulesContract {
 
     interface Presenter extends BasePresenter{}
 

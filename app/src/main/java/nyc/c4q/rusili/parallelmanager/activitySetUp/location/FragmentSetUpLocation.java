@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelmanager.activitySetUp.start1;
+package nyc.c4q.rusili.parallelmanager.activitySetUp.location;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,18 +6,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import nyc.c4q.rusili.parallelmanager.R;
 
-public class FragmentSetUpStart1 extends Fragment implements View.OnClickListener, FragmentSetUpStart1Contract.View{
-    private FragmentSetUpStart1Contract.Presenter mPresenter;
+public class FragmentSetUpLocation extends Fragment implements View.OnClickListener, FragmentSetUpLocationContract.View{
+    private FragmentSetUpLocationContract.Presenter mPresenter;
     private View mView;
 
-    private Button buttonNext;
-
-    public static FragmentSetUpStart1 newInstance(int id) {
-        FragmentSetUpStart1 fragment = new FragmentSetUpStart1();
+    public static FragmentSetUpLocation newInstance(int id) {
+        FragmentSetUpLocation fragment = new FragmentSetUpLocation();
 
         Bundle args = new Bundle();
         args.putInt("id", id);
@@ -29,13 +26,13 @@ public class FragmentSetUpStart1 extends Fragment implements View.OnClickListene
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_setup_start1, container, false);
+        mView = inflater.inflate(R.layout.fragment_setup_location, container, false);
         initialize();
         return mView;
     }
 
     @Override
-    public void setPresenter (FragmentSetUpStart1Contract.Presenter presenterParam) {
+    public void setPresenter (FragmentSetUpLocationContract.Presenter presenterParam) {
         this.mPresenter = presenterParam;
     }
 
@@ -57,4 +54,5 @@ public class FragmentSetUpStart1 extends Fragment implements View.OnClickListene
         switch (v.getId()){
         }
     }
+
 }

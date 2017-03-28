@@ -44,17 +44,11 @@ dependencies {
     // RecyclerView:
     compile "com.android.support:recyclerview-v7:25.2.0"
 
-    // Circular ImageView:
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-
     // Picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
 
     // SuperRecyclerView:
     compile 'com.malinskiy:superrecyclerview:1.1.4'
-
-    // Swipe Stack:
-    compile 'link.fls:swipestack:0.3.0'
 
     // Date Time Picker:
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'

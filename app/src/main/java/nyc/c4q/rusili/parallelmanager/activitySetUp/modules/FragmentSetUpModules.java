@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelmanager.activitySetUp.start3;
+package nyc.c4q.rusili.parallelmanager.activitySetUp.modules;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 
 import nyc.c4q.rusili.parallelmanager.R;
 
-public class FragmentSetUpStart3 extends Fragment implements View.OnClickListener, FragmentSetUpStart3Contract.View{
-    private FragmentSetUpStart3Contract.Presenter mPresenter;
+public class FragmentSetUpModules extends Fragment implements View.OnClickListener, FragmentSetUpModulesContract.View{
+    private FragmentSetUpModulesContract.Presenter mPresenter;
     private View mView;
 
-    public static FragmentSetUpStart3 newInstance(int id) {
-        FragmentSetUpStart3 fragment = new FragmentSetUpStart3();
+    public static FragmentSetUpModules newInstance(int id) {
+        FragmentSetUpModules fragment = new FragmentSetUpModules();
 
         Bundle args = new Bundle();
         args.putInt("id", id);
@@ -26,13 +26,13 @@ public class FragmentSetUpStart3 extends Fragment implements View.OnClickListene
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_setup_start3, container, false);
+        mView = inflater.inflate(R.layout.fragment_setup_location, container, false);
         initialize();
         return mView;
     }
 
     @Override
-    public void setPresenter (FragmentSetUpStart3Contract.Presenter presenterParam) {
+    public void setPresenter (FragmentSetUpModulesContract.Presenter presenterParam) {
         this.mPresenter = presenterParam;
     }
 

@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelmanager.activitySetUp.start2;
+package nyc.c4q.rusili.parallelmanager.activitySetUp.date;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,8 +17,8 @@ import java.util.Date;
 
 import nyc.c4q.rusili.parallelmanager.R;
 
-public class FragmentSetUpStart2 extends Fragment implements View.OnClickListener, FragmentSetUpStart2Contract.View{
-    private FragmentSetUpStart2Contract.Presenter mPresenter;
+public class FragmentSetUpDate extends Fragment implements View.OnClickListener, FragmentSetUpDateContract.View{
+    private FragmentSetUpDateContract.Presenter mPresenter;
     private View mView;
 
     private SimpleDateFormat mFormatterDate = new SimpleDateFormat("MMMM dd yyyy");
@@ -30,8 +30,8 @@ public class FragmentSetUpStart2 extends Fragment implements View.OnClickListene
     private TextView textViewTime1;
     private TextView textViewTime2;
 
-    public static FragmentSetUpStart2 newInstance(int id) {
-        FragmentSetUpStart2 fragment = new FragmentSetUpStart2();
+    public static FragmentSetUpDate newInstance(int id) {
+        FragmentSetUpDate fragment = new FragmentSetUpDate();
 
         Bundle args = new Bundle();
         args.putInt("id", id);
@@ -43,13 +43,13 @@ public class FragmentSetUpStart2 extends Fragment implements View.OnClickListene
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_setup_start2, container, false);
+        mView = inflater.inflate(R.layout.fragment_setup_date, container, false);
         initialize();
         return mView;
     }
 
     @Override
-    public void setPresenter (FragmentSetUpStart2Contract.Presenter presenterParam) {
+    public void setPresenter (FragmentSetUpDateContract.Presenter presenterParam) {
         this.mPresenter = presenterParam;
     }
 

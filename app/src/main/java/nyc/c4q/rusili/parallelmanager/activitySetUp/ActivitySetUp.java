@@ -89,12 +89,6 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
                     buttonNext.setVisibility(View.INVISIBLE);
                     buttonCreate.setVisibility(View.VISIBLE);
                 } else if (position == 6){
-                    stepName = "Event Created!";
-                    buttonPrevious.setVisibility(View.INVISIBLE);
-                buttonNext.setVisibility(View.INVISIBLE);
-                buttonCreate.setVisibility(View.INVISIBLE);
-                    SpringIndicator springIndicator = (SpringIndicator) findViewById(R.id.activity_setup_springindicator);
-                    springIndicator.setVisibility(View.INVISIBLE);
                 }
                 textViewStep.setText("Step " + position + " of 6 - " + stepName);
             }
