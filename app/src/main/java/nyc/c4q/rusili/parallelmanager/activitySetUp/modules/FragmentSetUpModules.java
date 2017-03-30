@@ -26,7 +26,7 @@ public class FragmentSetUpModules extends Fragment implements View.OnClickListen
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_setup_location, container, false);
+        mView = inflater.inflate(R.layout.fragment_setup_modules, container, false);
         initialize();
         return mView;
     }

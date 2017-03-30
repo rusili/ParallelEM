@@ -19,6 +19,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textAppearance">@style/CustomTextAppearance</item>
+        <item name="android:colorControlActivated">@color/purpleMedium</item>
     </style>
 
     <style name="ActivityMonitor" parent="Theme.AppCompat.Light.DarkActionBar">

@@ -78,19 +78,13 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
                     buttonPrevious.setVisibility(View.VISIBLE);
                     buttonNext.setVisibility(View.VISIBLE);
                     buttonCreate.setVisibility(View.INVISIBLE);
-                } else if (position == 4){
-                    stepName = "Floor Layout";
-                    buttonPrevious.setVisibility(View.VISIBLE);
-                    buttonNext.setVisibility(View.VISIBLE);
-                    buttonCreate.setVisibility(View.INVISIBLE);
-                } else if (position == 5){
-                    stepName = "Questions";
+                } else if (position == 4) {
+                    stepName = "Modules";
                     buttonPrevious.setVisibility(View.VISIBLE);
                     buttonNext.setVisibility(View.INVISIBLE);
                     buttonCreate.setVisibility(View.VISIBLE);
-                } else if (position == 6){
                 }
-                textViewStep.setText("Step " + position + " of 6 - " + stepName);
+                textViewStep.setText("Step " + position + " of 4 - " + stepName);
             }
 
             @Override

@@ -5,6 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="@dimen/activity_start_fragment_height"
               android:gravity="center"
+              android:background="@color/f9"
     >
 
     <FrameLayout

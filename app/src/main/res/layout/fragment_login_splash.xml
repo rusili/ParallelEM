@@ -5,6 +5,7 @@
               android:layout_height="match_parent"
               android:onClick="onClickToLogin"
               android:gravity="center"
+              android:background="@color/f9"
     >
 
     <FrameLayout

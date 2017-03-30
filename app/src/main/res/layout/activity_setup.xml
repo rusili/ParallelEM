@@ -3,6 +3,7 @@
              android:layout_width="match_parent"
     android:layout_height="match_parent"
               android:orientation="vertical"
+                android:background="@drawable/uibackground1"
     >
 
     <RelativeLayout
@@ -10,14 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center_vertical"
+        android:background="#f9f9f9"
         >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:src="@drawable/lines"
-            android:layout_alignParentRight="true"
-            />
 
     </RelativeLayout>
 
@@ -28,7 +23,8 @@
         android:orientation="vertical"
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
-        android:background="#10000000"
+        android:layout_marginRight="12dp"
+        android:background="#f9f9f9"
         android:layout_below="@id/activity_setup_actionbar"
         >
 
@@ -51,10 +47,49 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/viewpager_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#f9f9f9"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:id="@+id/activity_setup_button_next"
+            android:layout_width="96dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Next"
+            />
+
+        <Button
+            android:id="@+id/activity_setup_button_previous"
+            android:layout_width="96dp"
+            android:layout_height="48dp"
+
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="Prev"
+            />
+
+        <Button
+            android:id="@+id/activity_setup_button_create"
+            android:layout_width="96dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Create"
+            />
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/activity_setup_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="64dp"
         android:layout_below="@id/activity_setup_statusbar"
         >
         <include layout="@layout/activity_setup_viewpager"></include>

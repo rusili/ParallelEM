@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
     android:layout_height="match_parent"
+             android:background="@drawable/uibackground1"
     >
 
     <FrameLayout
@@ -41,12 +42,12 @@
 
     <LinearLayout
         android:id="@+id/activity_login_fragment_container"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginRight="12dp"
+        android:background="@color/f9"
         android:gravity="center_vertical"
         >
-
     </LinearLayout>
 
 </FrameLayout>
