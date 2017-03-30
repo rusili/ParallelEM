@@ -65,14 +65,19 @@ dependencies {
     // Floating Action Button:
     compile 'com.getbase:floatingactionbutton:1.10.1'
 
-    // Toggle Expand Layout
-    compile 'com.github.fenjuly:ToggleExpandLayout:774e497692'
-    compile 'com.kyleduo.switchbutton:library:1.2.9'
-
     // Advanced Recycler View;
     compile ('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.10.4@aar'){
         transitive=true
     }
     // TextView Animation Library:
     compile 'hanks.xyz:htextview-library:0.1.5'
+
+    // Material Edittext:
+    compile 'com.rengwuxian.materialedittext:library:2.1.4'
+
+    // BetterSpinner:
+    compile 'com.jaredrummler:material-spinner:1.1.0'
+
+    // Circular ImageView:
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

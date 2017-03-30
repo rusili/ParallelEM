@@ -1,20 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-    android:layout_height="match_parent"
-              android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
                 android:background="@drawable/uibackground1"
     >
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/activity_setup_actionbar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center_vertical"
-        android:background="#f9f9f9"
+        android:background="@color/f9"
+        android:paddingTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="8dp"
         >
 
-    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="MANAGER"
+            android:textSize="16sp"
+            android:layout_marginLeft="12dp"
+            android:textStyle="italic"
+            android:textColor="@color/textMain"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/activity_setup_actionbar_accountimage"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:src="@color/blue"
+            android:layout_gravity="end"
+            android:layout_marginRight="36dp"
+            />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/activity_setup_actionbar_spinner"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            app:ms_background_color="@color/transparent"
+            android:layout_gravity="end"
+            />
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/activity_setup_statusbar"
@@ -22,7 +54,7 @@
         android:layout_height="84dp"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:paddingLeft="16dp"
+        android:paddingLeft="48dp"
         android:layout_marginRight="12dp"
         android:background="#f9f9f9"
         android:layout_below="@id/activity_setup_actionbar"
@@ -32,8 +64,9 @@
             android:id="@+id/activity_setup_textview_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Event"
-            android:textSize="24sp"
+            android:text="CREATE EVENT"
+            android:textStyle="italic"
+            android:textSize="16sp"
             android:textColor="@color/textMain"
             android:layout_marginBottom="4dp"
             />
@@ -42,47 +75,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Step 1 of 3 - Event Basics"
-            android:textSize="18sp"
+            android:textStyle="italic"
+            android:textSize="16sp"
             />
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/viewpager_bottom"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="#f9f9f9"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
         android:layout_alignParentBottom="true"
         >
 
-        <Button
-            android:id="@+id/activity_setup_button_next"
-            android:layout_width="96dp"
-            android:layout_height="48dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:text="Next"
-            />
-
-        <Button
+        <ImageButton
             android:id="@+id/activity_setup_button_previous"
-            android:layout_width="96dp"
-            android:layout_height="48dp"
-
-            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/leftchevron"
+            android:background="@color/transparent"
             android:layout_alignParentLeft="true"
-            android:text="Prev"
+            android:layout_centerVertical="true"
+            android:tint="@color/purpleDark"
+            android:layout_marginLeft="40dp"
             />
 
-        <Button
-            android:id="@+id/activity_setup_button_create"
-            android:layout_width="96dp"
-            android:layout_height="48dp"
-            android:layout_alignParentBottom="true"
+        <ImageButton
+            android:id="@+id/activity_setup_button_next"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/rightchevron"
+            android:background="@color/transparent"
             android:layout_alignParentRight="true"
-            android:text="Create"
+            android:layout_centerVertical="true"
+            android:tint="@color/purpleDark"
+            android:layout_marginRight="40dp"
             />
-    </LinearLayout>
+
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/activity_setup_fragment_container"
@@ -92,6 +127,7 @@
         android:layout_marginBottom="64dp"
         android:layout_below="@id/activity_setup_statusbar"
         >
+
         <include layout="@layout/activity_setup_viewpager"></include>
     </FrameLayout>
 

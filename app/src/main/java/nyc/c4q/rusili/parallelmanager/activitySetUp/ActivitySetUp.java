@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.eftimoff.viewpagertransformers.DepthPageTransformer;
@@ -21,9 +21,8 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
     private ViewPagerAdapter viewPagerAdapter;
     private TextView textViewStep;
     private TextView textViewOverview;
-    private Button buttonNext;
-    private Button buttonPrevious;
-    private Button buttonCreate;
+    private ImageButton buttonNext;
+    private ImageButton buttonPrevious;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -41,13 +40,11 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
     private void setOnClickListeners () {
         buttonNext.setOnClickListener(this);
         buttonPrevious.setOnClickListener(this);
-        buttonCreate.setOnClickListener(this);
     }
 
     private void setViews () {
-        buttonNext = (Button) findViewById(R.id.activity_setup_button_next);
-        buttonPrevious = (Button) findViewById(R.id.activity_setup_button_previous);
-        buttonCreate = (Button) findViewById(R.id.activity_setup_button_create);
+        buttonNext = (ImageButton) findViewById(R.id.activity_setup_button_next);
+        buttonPrevious = (ImageButton) findViewById(R.id.activity_setup_button_previous);
         textViewStep = (TextView) findViewById(R.id.activity_setup_textview_step);
         textViewOverview = (TextView) findViewById(R.id.activity_setup_textview_overview);
     }
@@ -67,22 +64,14 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
                     stepName = "Event Basics";
                     buttonPrevious.setVisibility(View.INVISIBLE);
                     buttonNext.setVisibility(View.VISIBLE);
-                    buttonCreate.setVisibility(View.INVISIBLE);
-                } else if (position == 2){
+                } else if (position == 2 || position == 3){
                     stepName = "Date and Time";
                     buttonPrevious.setVisibility(View.VISIBLE);
                     buttonNext.setVisibility(View.VISIBLE);
-                    buttonCreate.setVisibility(View.INVISIBLE);
-                } else if (position == 3){
-                    stepName = "Location and Radius";
-                    buttonPrevious.setVisibility(View.VISIBLE);
-                    buttonNext.setVisibility(View.VISIBLE);
-                    buttonCreate.setVisibility(View.INVISIBLE);
                 } else if (position == 4) {
                     stepName = "Modules";
                     buttonPrevious.setVisibility(View.VISIBLE);
                     buttonNext.setVisibility(View.INVISIBLE);
-                    buttonCreate.setVisibility(View.VISIBLE);
                 }
                 textViewStep.setText("Step " + position + " of 4 - " + stepName);
             }
@@ -110,9 +99,6 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.activity_setup_button_next:
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1, true);
-                break;
-            case R.id.activity_setup_button_create:
-                toFragmentCreated();
                 break;
         }
     }

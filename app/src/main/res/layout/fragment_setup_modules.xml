@@ -5,13 +5,48 @@
               android:layout_height="match_parent"
               android:layout_marginTop="132dp"
               android:layout_marginBottom="64dp"
-              android:gravity="center_vertical"
               android:background="#f9f9f9"
     >
 
-    <Switch
+    <nyc.c4q.rusili.parallelmanager.utility.mylibrary.DropDownLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="15dp"
+    >
+
+        <nyc.c4q.rusili.parallelmanager.utility.mylibrary.ToggleExpandLayout
+        android:id="@+id/expandlayout_module1_expandlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        >
+
+        <View
+            android:id="@+id/expandlayout_module1_expanded"
+            android:layout_width="300dp"
+            android:layout_height="64dp"
+            android:elevation="2dp"
+            android:outlineProvider="bounds"
+            android:background="@color/blue"
+            >
+        </View>
+        <RelativeLayout
+            android:id="@+id/expandlayout_module1_root"
+            android:layout_width="300dp"
+            android:layout_height="64dp"
+            android:elevation="2dp"
+            android:outlineProvider="bounds"
+            android:background="@color/purpleLight"
+            >
+
+            <Switch
+                android:id="@+id/module1_switch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </RelativeLayout>
+
+        </nyc.c4q.rusili.parallelmanager.utility.mylibrary.ToggleExpandLayout>
+    </nyc.c4q.rusili.parallelmanager.utility.mylibrary.DropDownLayout>
 
 </LinearLayout>
