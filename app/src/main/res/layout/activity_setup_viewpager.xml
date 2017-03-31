@@ -17,7 +17,9 @@
         android:id="@+id/activity_setup_springindicator"
         android:background="#f9f9f9"
         android:layout_width="match_parent"
-        android:layout_height="48dp"/>
+        android:layout_height="48dp"
+        android:visibility="gone"
+        />
 
     <nyc.c4q.rusili.parallelmanager.utility.viewpager.FixedViewPager
         android:id="@+id/activity_setup_viewpager"

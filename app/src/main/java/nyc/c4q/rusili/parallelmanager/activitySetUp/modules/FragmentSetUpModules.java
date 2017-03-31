@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 
 import nyc.c4q.rusili.parallelmanager.R;
 import nyc.c4q.rusili.parallelmanager.utility.mylibrary.ToggleExpandLayout;
@@ -16,7 +14,7 @@ public class FragmentSetUpModules extends Fragment implements View.OnClickListen
     private FragmentSetUpModulesContract.Presenter mPresenter;
     private View mView;
     private ToggleExpandLayout toggleExpandLayout;
-    private Switch aSwitch;
+    private boolean isOpen = false;
 
     public static FragmentSetUpModules newInstance(int id) {
         FragmentSetUpModules fragment = new FragmentSetUpModules();
@@ -45,49 +43,40 @@ public class FragmentSetUpModules extends Fragment implements View.OnClickListen
     public void initialize () {
         setViews();
         setOnClickListeners();
-        setOnSwitchListeners();
+        setModuleSwitchListeners();
     }
 
-    private void setOnSwitchListeners () {
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    private void setModuleSwitchListeners () {
+        toggleExpandLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged (CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+            public void onClick (View v) {
+                if (!isOpen) {
                     toggleExpandLayout.open();
-                } else {
+                    isOpen = true;
+                } else if (isOpen){
                     toggleExpandLayout.close();
+                    isOpen = false;
                 }
             }
         });
+
     }
 
     @Override
     public void setViews () {
         toggleExpandLayout = (ToggleExpandLayout) mView.findViewById(R.id.expandlayout_module1_expandlayout);
-        aSwitch = (Switch) mView.findViewById(R.id.module1_switch);
     }
 
     private void setOnClickListeners(){
         toggleExpandLayout.setOnToggleTouchListener(new ToggleExpandLayout.OnToggleTouchListener() {
             @Override
-            public void onStartOpen (int height, int originalHeight) {
-
-            }
-
+            public void onStartOpen (int height, int originalHeight) {}
             @Override
-            public void onOpen () {
-
-            }
-
+            public void onOpen () {}
             @Override
-            public void onStartClose (int height, int originalHeight) {
-
-            }
-
+            public void onStartClose (int height, int originalHeight) {}
             @Override
-            public void onClosed () {
-
-            }
+            public void onClosed () {}
         });
     }
 

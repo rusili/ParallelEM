@@ -19,7 +19,8 @@
         android:id="@+id/expandlayout_module1_expandlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
+        android:clickable="true"
+            >
 
         <View
             android:id="@+id/expandlayout_module1_expanded"
@@ -39,14 +40,16 @@
             android:background="@color/purpleLight"
             >
 
-            <Switch
-                android:id="@+id/module1_switch"
+            <TextView
+                android:id="@+id/textviewtest"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
-        </RelativeLayout>
 
+        </RelativeLayout>
         </nyc.c4q.rusili.parallelmanager.utility.mylibrary.ToggleExpandLayout>
+
+
     </nyc.c4q.rusili.parallelmanager.utility.mylibrary.DropDownLayout>
 
 </LinearLayout>

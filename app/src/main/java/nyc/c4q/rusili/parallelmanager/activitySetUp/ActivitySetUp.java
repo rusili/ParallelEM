@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.eftimoff.viewpagertransformers.DepthPageTransformer;
+import com.eftimoff.viewpagertransformers.ZoomOutSlideTransformer;
 
 import github.chenupt.springindicator.SpringIndicator;
 import nyc.c4q.rusili.parallelmanager.R;
@@ -81,7 +81,7 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
             @Override
             public void onPageScrollStateChanged (int state) {}
         });
-        viewPager.setPageTransformer(true, new DepthPageTransformer());
+        viewPager.setPageTransformer(true, new ZoomOutSlideTransformer());
         springIndicator.setViewPager(viewPager);
     }
 
