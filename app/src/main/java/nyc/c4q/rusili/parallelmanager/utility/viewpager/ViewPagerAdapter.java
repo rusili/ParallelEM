@@ -3,6 +3,7 @@ package nyc.c4q.rusili.parallelmanager.utility.viewpager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import nyc.c4q.rusili.parallelmanager.activitySetUp.FragTest;
 import nyc.c4q.rusili.parallelmanager.activitySetUp.basics.FragmentSetUpBasics;
 import nyc.c4q.rusili.parallelmanager.activitySetUp.date.FragmentSetUpDate;
 import nyc.c4q.rusili.parallelmanager.activitySetUp.location.FragmentSetUpLocation;
