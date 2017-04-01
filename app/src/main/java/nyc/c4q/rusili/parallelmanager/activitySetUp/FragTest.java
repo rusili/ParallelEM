@@ -36,7 +36,7 @@ public class FragTest extends Fragment implements OnMapReadyCallback {
         mView = inflater.inflate(R.layout.fragment_setup_location, null, false);
 
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.fragment_setup_location_map_fragment);
         mapFragment.getMapAsync(this);
 
         return mView;

@@ -194,7 +194,7 @@ public class FragmentSetUpLocation extends Fragment implements View.OnClickListe
     @Override
     public void onConnected (@Nullable Bundle bundle) {
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.fragment_setup_location_map_fragment);
         mapFragment.getMapAsync(this);
     }
 

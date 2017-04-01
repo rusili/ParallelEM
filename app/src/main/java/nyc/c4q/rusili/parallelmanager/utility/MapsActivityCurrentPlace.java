@@ -1,6 +1,7 @@
 package nyc.c4q.rusili.parallelmanager.utility;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -16,18 +17,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceLikelihood;
 import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,6 +44,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import nyc.c4q.rusili.parallelmanager.R;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
 
 /**
  * An activity that displays a map showing the place at the device's current location.
@@ -78,6 +87,7 @@ public class MapsActivityCurrentPlace extends Fragment
     private String[] mLikelyPlaceAttributions = new String[mMaxEntries];
     private LatLng[] mLikelyPlaceLatLngs = new LatLng[mMaxEntries];
     private LayoutInflater inflater;
+    private int PLACE_AUTOCOMPLETE_REQUEST_CODE = 11;
 
     public static MapsActivityCurrentPlace newInstance (int id) {
         MapsActivityCurrentPlace fragment = new MapsActivityCurrentPlace();
@@ -99,7 +109,7 @@ public class MapsActivityCurrentPlace extends Fragment
     }
 
     private void initialize (Bundle savedInstanceState) {
-        Button button = (Button) mView.findViewById(R.id.option_get_place);
+        ImageButton button = (ImageButton) mView.findViewById(R.id.option_get_place);
         button.setOnClickListener(this);
 
         // Retrieve location and camera position from saved instance state.
@@ -121,6 +131,21 @@ public class MapsActivityCurrentPlace extends Fragment
         mGoogleApiClient.connect();
     }
 
+    @Override
+    public void onActivityResult (int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlaceAutocomplete.getPlace(getContext(), data);
+                Log.i(TAG, "Place: " + place.getName());
+            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                Status status = PlaceAutocomplete.getStatus(getContext(), data);
+                Log.i(TAG, status.getStatusMessage());
+
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }    }
+
     /**
      * Saves the state of the map when the activity is paused.
      */
@@ -140,8 +165,23 @@ public class MapsActivityCurrentPlace extends Fragment
     public void onConnected(Bundle connectionHint) {
         // Build the map.
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.fragment_setup_location_map_fragment);
         mapFragment.getMapAsync(this);
+
+        SupportPlaceAutocompleteFragment supportPlaceAutocompleteFragment = new SupportPlaceAutocompleteFragment();
+        this.getChildFragmentManager().beginTransaction()
+                .replace(R.id.fragment_setup_location_autocomplete_fragment, supportPlaceAutocompleteFragment)
+                .commit();
+
+        supportPlaceAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected (Place place) {}
+
+            @Override
+            public void onError (Status status) {
+                Log.d("AutocompleteFragment: ", status.toString());
+            }
+        });
     }
 
     /**
@@ -208,7 +248,7 @@ public class MapsActivityCurrentPlace extends Fragment
             public View getInfoContents(Marker marker) {
                 // Inflate the layouts for the info window, title and snippet.
                 View infoWindow = inflater.inflate(R.layout.custom_info_contents,
-                        (FrameLayout)getActivity().findViewById(R.id.map), false);
+                        (FrameLayout)getActivity().findViewById(R.id.fragment_setup_location_map_fragment), false);
 
                 TextView title = ((TextView) infoWindow.findViewById(R.id.title));
                 title.setText(marker.getTitle());

@@ -54,7 +54,7 @@
     <LinearLayout
         android:id="@+id/activity_setup_statusbar"
         android:layout_width="match_parent"
-        android:layout_height="84dp"
+        android:layout_height="78dp"
         android:orientation="vertical"
         android:gravity="center_vertical"
         android:layout_marginTop="8dp"
