@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:orientation="vertical"
-                android:background="@drawable/uibackground1"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/uibackground1"
+    android:backgroundTint="#40FFFFFF"
+    android:backgroundTintMode="src_atop"
     >
 
     <FrameLayout
@@ -15,7 +18,8 @@
         android:background="@color/f9"
         android:paddingLeft="16dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,11 +57,12 @@
         android:layout_height="84dp"
         android:orientation="vertical"
         android:gravity="center_vertical"
+        android:layout_marginTop="8dp"
         android:paddingLeft="48dp"
         android:layout_marginRight="12dp"
-        android:layout_marginBottom="4dp"
         android:background="#f9f9f9"
         android:layout_below="@id/activity_setup_actionbar"
+        android:elevation="4dp"
         >
 
         <TextView
@@ -84,17 +89,16 @@
     <RelativeLayout
         android:id="@+id/viewpager_bottom"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="48dp"
         android:background="#f9f9f9"
         android:paddingBottom="8dp"
         android:layout_alignParentBottom="true"
-        android:elevation="16dp"
         >
 
         <ImageButton
             android:id="@+id/activity_setup_button_previous"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="28dp"
             android:scaleType="centerInside"
             android:src="@drawable/leftchevron"
             android:background="@color/transparent"
@@ -107,7 +111,7 @@
         <ImageButton
             android:id="@+id/activity_setup_button_next"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="28dp"
             android:scaleType="centerInside"
             android:src="@drawable/rightchevron"
             android:background="@color/transparent"
@@ -115,20 +119,22 @@
             android:layout_centerVertical="true"
             android:tint="@color/purpleDark"
             android:layout_marginRight="40dp"
+            android:elevation="8dp"
             />
 
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/activity_setup_fragment_container"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_setup_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/f9"
         android:layout_below="@id/activity_setup_statusbar"
+        android:elevation="4dp"
         >
-
-        <include layout="@layout/activity_setup_viewpager"></include>
-    </FrameLayout>
+    </android.support.v4.view.ViewPager>
 
 </RelativeLayout>

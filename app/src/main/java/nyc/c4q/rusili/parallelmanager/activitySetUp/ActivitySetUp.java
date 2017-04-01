@@ -7,20 +7,15 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.eftimoff.viewpagertransformers.ZoomOutSlideTransformer;
+import com.eftimoff.viewpagertransformers.DefaultTransformer;
 
-import github.chenupt.springindicator.SpringIndicator;
 import nyc.c4q.rusili.parallelmanager.R;
-import nyc.c4q.rusili.parallelmanager.utility.CustomAlertDialog;
 import nyc.c4q.rusili.parallelmanager.utility.viewpager.ViewPagerAdapter;
 
 public class ActivitySetUp extends AppCompatActivity implements View.OnClickListener {
-    private CustomAlertDialog mCustomAlertDialog = new CustomAlertDialog();
     private ViewPager viewPager;
-    private SpringIndicator springIndicator;
     private ViewPagerAdapter viewPagerAdapter;
     private TextView textViewStep;
-    private TextView textViewOverview;
     private ImageButton buttonNext;
     private ImageButton buttonPrevious;
 
@@ -46,12 +41,10 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
         buttonNext = (ImageButton) findViewById(R.id.activity_setup_button_next);
         buttonPrevious = (ImageButton) findViewById(R.id.activity_setup_button_previous);
         textViewStep = (TextView) findViewById(R.id.activity_setup_textview_step);
-        textViewOverview = (TextView) findViewById(R.id.activity_setup_textview_overview);
     }
 
     public void setupViewpager() {
         viewPager = (ViewPager) findViewById(R.id.activity_setup_viewpager);
-        springIndicator = (SpringIndicator) findViewById(R.id.activity_setup_springindicator);
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
@@ -68,6 +61,10 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
                     stepName = "Date and Time";
                     buttonPrevious.setVisibility(View.VISIBLE);
                     buttonNext.setVisibility(View.VISIBLE);
+                } else if (position == 3){
+                    stepName = "Location";
+                    buttonPrevious.setVisibility(View.VISIBLE);
+                    buttonNext.setVisibility(View.VISIBLE);
                 } else if (position == 4) {
                     stepName = "Modules";
                     buttonPrevious.setVisibility(View.VISIBLE);
@@ -81,8 +78,7 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
             @Override
             public void onPageScrollStateChanged (int state) {}
         });
-        viewPager.setPageTransformer(true, new ZoomOutSlideTransformer());
-        springIndicator.setViewPager(viewPager);
+        viewPager.setPageTransformer(true, new DefaultTransformer());
     }
 
 
@@ -101,10 +97,5 @@ public class ActivitySetUp extends AppCompatActivity implements View.OnClickList
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1, true);
                 break;
         }
-    }
-
-    private void toFragmentCreated () {
-        CustomAlertDialog customAlertDialog = new CustomAlertDialog();
-        customAlertDialog.confirmReplaceFragment(this, viewPager);
     }
 }
