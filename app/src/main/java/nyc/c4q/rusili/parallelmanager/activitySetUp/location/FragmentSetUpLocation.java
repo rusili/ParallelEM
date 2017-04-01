@@ -1,6 +1,5 @@
 package nyc.c4q.rusili.parallelmanager.activitySetUp.location;
 
-import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -91,17 +90,17 @@ public class FragmentSetUpLocation extends Fragment implements View.OnClickListe
     }
 
     private void getDeviceLocation () {
+        if (ContextCompat.checkSelfPermission(getContext().getApplicationContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            locationPermissionGranted = true;
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
+
         if (locationPermissionGranted) {
-            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
             lastKnownLocation = LocationServices.FusedLocationApi
                     .getLastLocation(googleApiClient);
         }
@@ -186,7 +185,7 @@ public class FragmentSetUpLocation extends Fragment implements View.OnClickListe
     @Override
     public void onMapReady (GoogleMap googleMap) {
         map = googleMap;
-        //updateLocationUI();
+        updateLocationUI();
         //getDeviceLocation();
     }
 }

@@ -13,11 +13,13 @@ import nyc.c4q.rusili.parallelmanager.R;
 import nyc.c4q.rusili.parallelmanager.utility.viewpager.ViewPagerAdapter;
 
 public class ActivitySetUp extends AppCompatActivity implements View.OnClickListener {
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 28;
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     private TextView textViewStep;
     private ImageButton buttonNext;
     private ImageButton buttonPrevious;
+    private static boolean locationPermissionGranted = false;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
