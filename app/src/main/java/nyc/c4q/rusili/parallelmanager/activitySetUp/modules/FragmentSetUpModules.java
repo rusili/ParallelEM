@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import nyc.c4q.rusili.parallelmanager.R;
-import nyc.c4q.rusili.parallelmanager.utility.mylibrary.ToggleExpandLayout;
+import nyc.c4q.rusili.parallelmanager.utility.toggleexpandlayout.ToggleExpandLayout;
 
 public class FragmentSetUpModules extends Fragment implements View.OnClickListener, FragmentSetUpModulesContract.View{
     private FragmentSetUpModulesContract.Presenter mPresenter;

@@ -20,6 +20,11 @@
             android:layout_height="match_parent"
             android:text="Enter a radius:"
             />
+        <Button
+            android:id="@+id/option_get_place"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
     </LinearLayout>
 
@@ -28,7 +33,7 @@
               android:name="com.google.android.gms.maps.SupportMapFragment"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              tools:context="package nyc.c4q.rusili.parallelmanager.activitySetUp.FragTest"
+              tools:context="nyc.c4q.rusili.parallelmanager.utility.MapsActivityCurrentPlace"
               >
     </fragment>
 

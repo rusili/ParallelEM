@@ -1,4 +1,4 @@
-package nyc.c4q.rusili.parallelmanager.utility.mylibrary;
+package nyc.c4q.rusili.parallelmanager.utility.toggleexpandlayout;
 
 import android.view.View;
 
