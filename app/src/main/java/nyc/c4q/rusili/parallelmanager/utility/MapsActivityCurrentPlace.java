@@ -58,6 +58,7 @@ public class MapsActivityCurrentPlace extends Fragment
                 GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = MapsActivityCurrentPlace.class.getSimpleName();
+    private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 11;
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
     private View mView;
@@ -68,7 +69,7 @@ public class MapsActivityCurrentPlace extends Fragment
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
     private final LatLng mDefaultLocation = new LatLng(40.7589, 73.9851);
-    private static final int DEFAULT_ZOOM = 17;
+    private static final int DEFAULT_ZOOM = 16;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
 
@@ -87,7 +88,6 @@ public class MapsActivityCurrentPlace extends Fragment
     private String[] mLikelyPlaceAttributions = new String[mMaxEntries];
     private LatLng[] mLikelyPlaceLatLngs = new LatLng[mMaxEntries];
     private LayoutInflater inflater;
-    private int PLACE_AUTOCOMPLETE_REQUEST_CODE = 11;
 
     public static MapsActivityCurrentPlace newInstance (int id) {
         MapsActivityCurrentPlace fragment = new MapsActivityCurrentPlace();
@@ -175,7 +175,9 @@ public class MapsActivityCurrentPlace extends Fragment
 
         supportPlaceAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public void onPlaceSelected (Place place) {}
+            public void onPlaceSelected (Place place) {
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+            }
 
             @Override
             public void onError (Status status) {
