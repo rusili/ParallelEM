@@ -1,6 +1,5 @@
 package nyc.c4q.rusili.parallelmanager.utility;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -10,30 +9,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.PlaceLikelihood;
-import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
-import com.google.android.gms.location.places.ui.PlaceAutocomplete;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
-import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -45,12 +37,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import nyc.c4q.rusili.parallelmanager.R;
 
-import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
-/**
- * An activity that displays a map showing the place at the device's current location.
- */
 public class MapsActivityCurrentPlace extends Fragment
         implements View.OnClickListener,
                 OnMapReadyCallback,
@@ -58,36 +46,26 @@ public class MapsActivityCurrentPlace extends Fragment
                 GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = MapsActivityCurrentPlace.class.getSimpleName();
-    private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 11;
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
     private View mView;
+    private LayoutInflater inflater;
 
-    // The entry point to Google Play services, used by the Places API and Fused Location Provider.
     private GoogleApiClient mGoogleApiClient;
 
-    // A default location (Sydney, Australia) and default zoom to use when location permission is
-    // not granted.
-    private final LatLng mDefaultLocation = new LatLng(40.7589, 73.9851);
+    private final LatLng mDefaultLocation = new LatLng(40.7589, 73.9851); // Times Square
     private static final int DEFAULT_ZOOM = 16;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private static final int PLACE_PICKER_REQUEST = 22;
     private boolean mLocationPermissionGranted;
-
-    // The geographical location where the device is currently located. That is, the last-known
-    // location retrieved by the Fused Location Provider.
+    private Marker marker;
     private Location mLastKnownLocation;
 
     // Keys for storing activity state.
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
 
-    // Used for selecting the current place.
-    private final int mMaxEntries = 5;
-    private String[] mLikelyPlaceNames = new String[mMaxEntries];
-    private String[] mLikelyPlaceAddresses = new String[mMaxEntries];
-    private String[] mLikelyPlaceAttributions = new String[mMaxEntries];
-    private LatLng[] mLikelyPlaceLatLngs = new LatLng[mMaxEntries];
-    private LayoutInflater inflater;
+    //--------//
 
     public static MapsActivityCurrentPlace newInstance (int id) {
         MapsActivityCurrentPlace fragment = new MapsActivityCurrentPlace();
@@ -109,17 +87,14 @@ public class MapsActivityCurrentPlace extends Fragment
     }
 
     private void initialize (Bundle savedInstanceState) {
-        ImageButton button = (ImageButton) mView.findViewById(R.id.option_get_place);
-        button.setOnClickListener(this);
+        EditText editText = (EditText) mView.findViewById(R.id.fragment_setup_location_autocomplete_fragment);
+        editText.setOnClickListener(this);
 
-        // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
             mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
 
-        // Build the Play services client for use by the Fused Location Provider and the Places API.
-        // Use the addApi() method to request the Google Places API and the Fused Location Provider.
         mGoogleApiClient = new GoogleApiClient.Builder(getContext())
                 .enableAutoManage(getActivity() /* FragmentActivity */,
                         this /* OnConnectionFailedListener */)
@@ -133,22 +108,17 @@ public class MapsActivityCurrentPlace extends Fragment
 
     @Override
     public void onActivityResult (int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+        if (requestCode == PLACE_PICKER_REQUEST){
             if (resultCode == RESULT_OK) {
-                Place place = PlaceAutocomplete.getPlace(getContext(), data);
-                Log.i(TAG, "Place: " + place.getName());
-            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-                Status status = PlaceAutocomplete.getStatus(getContext(), data);
-                Log.i(TAG, status.getStatusMessage());
-
-            } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
+                Place place = PlacePicker.getPlace(data, getContext());
+                String toastMsg = String.format("Place: %s", place.getName());
+                Toast.makeText(getContext(), toastMsg, Toast.LENGTH_LONG).show();
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+                placeMarker(place.getLatLng());
             }
-        }    }
+        }
+    }
 
-    /**
-     * Saves the state of the map when the activity is paused.
-     */
     @Override
     public void onSaveInstanceState (Bundle outState) {
         if (mMap != null) {
@@ -158,74 +128,33 @@ public class MapsActivityCurrentPlace extends Fragment
         }
     }
 
-    /**
-     * Builds the map when the Google Play services client is successfully connected.
-     */
     @Override
     public void onConnected(Bundle connectionHint) {
-        // Build the map.
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.fragment_setup_location_map_fragment);
         mapFragment.getMapAsync(this);
-
-        SupportPlaceAutocompleteFragment supportPlaceAutocompleteFragment = new SupportPlaceAutocompleteFragment();
-        this.getChildFragmentManager().beginTransaction()
-                .replace(R.id.fragment_setup_location_autocomplete_fragment, supportPlaceAutocompleteFragment)
-                .commit();
-
-        supportPlaceAutocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected (Place place) {
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
-            }
-
-            @Override
-            public void onError (Status status) {
-                Log.d("AutocompleteFragment: ", status.toString());
-            }
-        });
     }
 
-    /**
-     * Handles failure to connect to the Google Play services client.
-     */
+    private void showPlacePicker(){
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        try {
+            startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult result) {
-        // Refer to the reference doc for ConnectionResult to see what error codes might
-        // be returned in onConnectionFailed.
         Log.d(TAG, "Play services connection failed: ConnectionResult.getErrorCode() = "
                 + result.getErrorCode());
     }
 
-    /**
-     * Handles suspension of the connection to the Google Play services client.
-     */
     @Override
     public void onConnectionSuspended(int cause) {
         Log.d(TAG, "Play services connection suspended");
-    }
-
-    /**
-     * Sets up the options menu.
-     * @param menu The options menu.
-     * @return Boolean.
-     */
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getActivity().getMenuInflater().inflate(R.menu.current_place_menu, menu);
-        return true;
-    }
-
-    /**
-     * Handles a click on the menu option to get a place.
-     * @param item The menu item to handle.
-     * @return Boolean.
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == R.id.option_get_place) {
-            showCurrentPlace();
-//        }
-        return true;
     }
 
     /**
@@ -310,9 +239,6 @@ public class MapsActivityCurrentPlace extends Fragment
         }
     }
 
-    /**
-     * Handles the result of the request for location permissions.
-     */
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[],
@@ -330,92 +256,15 @@ public class MapsActivityCurrentPlace extends Fragment
         updateLocationUI();
     }
 
-    /**
-     * Prompts the user to select the current place from a list of likely places, and shows the
-     * current place on the map - provided the user has granted location permission.
-     */
-    private void showCurrentPlace() {
-        if (mMap == null) {
-            return;
-        }
-
-        if (mLocationPermissionGranted) {
-            // Get the likely places - that is, the businesses and other points of interest that
-            // are the best match for the device's current location.
-            @SuppressWarnings("MissingPermission")
-            PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi
-                    .getCurrentPlace(mGoogleApiClient, null);
-            result.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
-                @Override
-                public void onResult(@NonNull PlaceLikelihoodBuffer likelyPlaces) {
-                    int i = 0;
-                    mLikelyPlaceNames = new String[mMaxEntries];
-                    mLikelyPlaceAddresses = new String[mMaxEntries];
-                    mLikelyPlaceAttributions = new String[mMaxEntries];
-                    mLikelyPlaceLatLngs = new LatLng[mMaxEntries];
-                    for (PlaceLikelihood placeLikelihood : likelyPlaces) {
-                        // Build a list of likely places to show the user. Max 5.
-                        mLikelyPlaceNames[i] = (String) placeLikelihood.getPlace().getName();
-                        mLikelyPlaceAddresses[i] = (String) placeLikelihood.getPlace().getAddress();
-                        mLikelyPlaceAttributions[i] = (String) placeLikelihood.getPlace()
-                                .getAttributions();
-                        mLikelyPlaceLatLngs[i] = placeLikelihood.getPlace().getLatLng();
-
-                        i++;
-                        if (i > (mMaxEntries - 1)) {
-                            break;
-                        }
-                    }
-                    // Release the place likelihood buffer, to avoid memory leaks.
-                    likelyPlaces.release();
-
-                    // Show a dialog offering the user the list of likely places, and add a
-                    // marker at the selected place.
-                    openPlacesDialog();
-                }
-            });
+    private void placeMarker (LatLng markerLatLng) {
+        if (marker != null){
+            marker.setPosition(markerLatLng);
         } else {
-            // Add a default marker, because the user hasn't selected a place.
-            mMap.addMarker(new MarkerOptions()
-                    .title(getString(R.string.default_info_title))
-                    .position(mDefaultLocation)
-                    .snippet(getString(R.string.default_info_snippet)));
+            marker = mMap.addMarker(new MarkerOptions()
+                    .position(markerLatLng)
+                    .title("Your Destination")
+            );
         }
-    }
-
-    /**
-     * Displays a form allowing the user to select a place from a list of likely places.
-     */
-    private void openPlacesDialog() {
-        // Ask the user to choose the place where they are now.
-        DialogInterface.OnClickListener listener =
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // The "which" argument contains the position of the selected item.
-                        LatLng markerLatLng = mLikelyPlaceLatLngs[which];
-                        String markerSnippet = mLikelyPlaceAddresses[which];
-                        if (mLikelyPlaceAttributions[which] != null) {
-                            markerSnippet = markerSnippet + "\n" + mLikelyPlaceAttributions[which];
-                        }
-                        // Add a marker for the selected place, with an info window
-                        // showing information about that place.
-                        mMap.addMarker(new MarkerOptions()
-                                .title(mLikelyPlaceNames[which])
-                                .position(markerLatLng)
-                                .snippet(markerSnippet));
-
-                        // Position the map's camera at the location of the marker.
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
-                                DEFAULT_ZOOM));
-                    }
-                };
-
-        // Display the dialog.
-        AlertDialog dialog = new AlertDialog.Builder(getContext())
-                .setTitle(R.string.pick_place)
-                .setItems(mLikelyPlaceNames, listener)
-                .show();
     }
 
     /**
@@ -425,7 +274,6 @@ public class MapsActivityCurrentPlace extends Fragment
         if (mMap == null) {
             return;
         }
-
         /*
          * Request location permission, so that we can get the location of the
          * device. The result of the permission request is handled by a callback,
@@ -454,8 +302,9 @@ public class MapsActivityCurrentPlace extends Fragment
     @Override
     public void onClick (View v) {
         switch (v.getId()){
-            case R.id.option_get_place:{
-                showCurrentPlace();
+            case R.id.fragment_setup_location_autocomplete_fragment:{
+                showPlacePicker();
+                break;
             }
         }
     }

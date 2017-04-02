@@ -90,5 +90,8 @@ dependencies {
     // Circular ImageView:
     compile 'de.hdodenhof:circleimageview:2.1.0'
 
+    // Android Map Utils:
+    compile 'com.google.maps.android:android-maps-utils:0.3.4'
+
 
 }

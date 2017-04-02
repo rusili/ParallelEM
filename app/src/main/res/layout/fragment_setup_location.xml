@@ -10,36 +10,21 @@
               android:background="#f9f9f9"
     >
 
-    <FrameLayout
+    <EditText
         android:id="@+id/fragment_setup_location_autocomplete_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
         >
-    </FrameLayout>
+    </EditText>
 
-    <FrameLayout
+    <fragment
+        android:id="@+id/fragment_setup_location_map_fragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-        <fragment
-            android:id="@+id/fragment_setup_location_map_fragment"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="nyc.c4q.rusili.parallelmanager.utility.MapsActivityCurrentPlace"
-        >
-        </fragment>
-
-        <ImageButton
-            android:id="@+id/option_get_place"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="right|center_vertical"
-            android:src="@drawable/ic_place_black_24dp"
-            android:tint="@color/gray50"
-            android:background="#40FFFFFF"
-            />
-    </FrameLayout>
-
+        tools:context="nyc.c4q.rusili.parallelmanager.utility.MapsActivityCurrentPlace"
+    >
+    </fragment>
 
 </LinearLayout>
